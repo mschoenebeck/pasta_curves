@@ -1,6 +1,8 @@
 //! This module contains implementations for the Pallas and Vesta elliptic curve
 //! groups.
 
+use serde::{Serialize, Deserialize};
+
 use core::cmp;
 use core::fmt;
 use core::iter::Sum;
@@ -28,7 +30,7 @@ macro_rules! new_curve_impl {
     (($($privacy:tt)*), $name:ident, $name_affine:ident, $iso:ident, $base:ident, $scalar:ident,
      $curve_id:literal, $a_raw:expr, $b_raw:expr, $curve_type:ident) => {
         /// Represents a point in the projective coordinate space.
-        #[derive(Copy, Clone, Debug)]
+        #[derive(Copy, Clone, Debug, Serialize, Deserialize)]
         #[cfg_attr(feature = "repr-c", repr(C))]
         $($privacy)* struct $name {
             x: $base,
@@ -48,7 +50,7 @@ macro_rules! new_curve_impl {
 
         /// Represents a point in the affine coordinate space (or the point at
         /// infinity).
-        #[derive(Copy, Clone)]
+        #[derive(Copy, Clone, Serialize, Deserialize)]
         #[cfg_attr(feature = "repr-c", repr(C))]
         $($privacy)* struct $name_affine {
             x: $base,

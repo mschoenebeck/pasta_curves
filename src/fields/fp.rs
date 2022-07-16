@@ -3,6 +3,7 @@ use core::ops::{Add, Mul, Neg, Sub};
 
 use ff::PrimeField;
 use rand::RngCore;
+use serde::{Serialize, Deserialize};
 use subtle::{Choice, ConditionallySelectable, ConstantTimeEq, CtOption};
 
 #[cfg(feature = "sqrt-table")]
@@ -24,7 +25,7 @@ use crate::arithmetic::SqrtTables;
 // The internal representation of this type is four 64-bit unsigned
 // integers in little-endian order. `Fp` values are always in
 // Montgomery form; i.e., Fp(a) = aR mod p, with R = 2^256.
-#[derive(Clone, Copy, Eq)]
+#[derive(Clone, Copy, Eq, Serialize, Deserialize)]
 #[repr(transparent)]
 pub struct Fp(pub(crate) [u64; 4]);
 
