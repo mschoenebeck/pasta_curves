@@ -27,7 +27,7 @@ use crate::arithmetic::SqrtTables;
 // Montgomery form; i.e., Fp(a) = aR mod p, with R = 2^256.
 #[derive(Clone, Copy, Eq, Serialize, Deserialize)]
 #[repr(transparent)]
-pub struct Fp(pub(crate) [u64; 4]);
+pub struct Fp(pub [u64; 4]);
 
 impl fmt::Debug for Fp {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
